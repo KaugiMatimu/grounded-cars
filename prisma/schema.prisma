@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String
+  location  String
+  role      String   @default("USER")
+  listings  Listing[]
+  services  ServiceRequest[] @relation("ClientRequests")
+  assignments ServiceRequest[] @relation("TechnicianAssignments")
+  payments  Payment[]
+  notifications Notification[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Listing {
+  id          String     @id @default(cuid())
+  type        String
+  userId      String
+  user        User       @relation(fields: [userId], references: [id])
+  title       String
+  description String
+  price       Float?
+  make        String?
+  model       String?
+  year        Int?
+  mileage     Int?
+  condition   String?
+  transmission String?
+  fuelType    String?
+  location    String
+  images      String
+  availability String?
+  features    String
+  pickupDelivery String?
+  approved    Boolean    @default(false)
+  featured    Boolean    @default(false)
+  package     String    @default("FREE")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model ServiceRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation("ClientRequests", fields: [userId], references: [id])
+  name        String?
+  phoneNumber String?
+  serviceType String
+  carDetails  String
+  location    String
+  locationType String   @default("Home")
+  preferredTime String?
+  status      String   @default("PENDING")
+  assignedToId String?
+  assignedTo   User?    @relation("TechnicianAssignments", fields: [assignedToId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Payment {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  amount        Float
+  currency      String   @default("KES")
+  method        String
+  transactionId String?
+  status        String @default("PENDING")
+  createdAt     DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
