@@ -110,7 +110,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
             </div>
 
             <div className="grid grid-cols-5 gap-4 mb-12">
-              {imageUrls.map((url, index) => (
+              {imageUrls.map((url: string, index: number) => (
                 <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-gray-100 cursor-pointer hover:border-blue-500 transition-all">
                   <Image src={url} alt={`${car.title} - ${index + 1}`} fill className="object-cover" />
                 </div>
