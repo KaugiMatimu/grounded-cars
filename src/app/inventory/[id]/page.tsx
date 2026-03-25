@@ -136,7 +136,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
                       { icon: <Car className="w-5 h-5" />, label: 'Drive', value: 'N/A' },
                       { icon: <Car className="w-5 h-5" />, label: 'Registered', value: 'N/A' },
                       { icon: <Users className="w-5 h-5" />, label: 'Stock id', value: car.id.slice(-4) },
-                    ].map((spec, i) => (
+                    ].map((spec: any, i: number) => (
                       <div key={i} className="flex items-center gap-4">
                         <div className="text-blue-500 shrink-0">{spec.icon}</div>
                         <div>
@@ -164,7 +164,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
                   <div className="flex-1 w-full">
                     {section.id === 'features' && section.items && (
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4">
-                        {section.items.map((feature, i) => (
+                        {section.items.map((feature: string, i: number) => (
                           <div key={i} className="flex items-center gap-3">
                             <Check className="w-4 h-4 text-blue-500" />
                             <span className="text-sm font-bold text-gray-600">{feature}</span>
@@ -175,7 +175,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
                     {section.id === 'overview' && section.content && (
                       <div className="prose prose-sm max-w-none text-gray-600 font-medium leading-relaxed">
                         <ul className="list-disc pl-5 space-y-2">
-                          {section.content.split('\n').filter(l => l.trim()).map((line, i) => (
+                          {section.content.split('\n').filter((l: string) => l.trim()).map((line: string, i: number) => (
                             <li key={i}>{line}</li>
                           ))}
                         </ul>
@@ -278,7 +278,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
               { title: 'Had a recent service or MOT, if required', desc: '' },
               { title: 'All Vehicle Photos of imperfections, if needed', desc: '' },
               { title: 'Been reconditioned to our high standards', desc: '' },
-            ].map((item, i) => (
+            ].map((item: any, i: number) => (
               <div key={i} className="flex flex-col items-start text-left">
                 <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-6">
                   <CheckCircle2 className="w-6 h-6 text-blue-500" />
