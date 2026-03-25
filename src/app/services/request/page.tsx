@@ -30,7 +30,7 @@ export default function ServiceRequestPage() {
 
   useEffect(() => {
     if (session?.user?.name) {
-      setForm(prev => ({ ...prev, name: session.user.name }));
+      setForm(prev => ({ ...prev, name: session.user.name as string }));
     }
   }, [session]);
 
