@@ -29,8 +29,9 @@ export default function ServiceRequestPage() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (session?.user?.name) {
-      setForm(prev => ({ ...prev, name: session.user.name as string }));
+    const userName = session?.user?.name;
+    if (userName) {
+      setForm(prev => ({ ...prev, name: userName }));
     }
   }, [session]);
 
