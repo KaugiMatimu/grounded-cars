@@ -22,10 +22,10 @@ const schema = z.object({
   fuelType: z.string().optional(),
   location: z.string().min(1, "Location is required"),
   images: z.string().optional(), // Multiple URLs separated by commas
-  features: z.array(z.string()).default([]),
+  features: z.array(z.string()),
   availability: z.string().optional(),
   pickupDelivery: z.string().optional(),
-  package: z.enum(["FREE", "PREMIUM"]).default("FREE"),
+  package: z.enum(["FREE", "PREMIUM"]),
 });
 
 type ListingFormData = z.infer<typeof schema>;
@@ -47,6 +47,7 @@ export default function CreateListingForm() {
     defaultValues: {
       type: "SALE",
       features: [],
+      package: "FREE",
     }
   });
 
