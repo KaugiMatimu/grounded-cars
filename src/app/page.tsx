@@ -285,7 +285,7 @@ export default function Home() {
                 const mainImage = imageUrls[0] || 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80';
 
                 return (
-                  <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm group border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                  <Link key={car.id} href={`/inventory/${car.id}`} className="bg-white rounded-xl overflow-hidden shadow-sm group border border-gray-100 hover:shadow-2xl transition-all duration-500">
                     <div className="relative h-64 overflow-hidden">
                       <Image src={mainImage} alt={car.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                       {car.featured && (
@@ -328,7 +328,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             )}

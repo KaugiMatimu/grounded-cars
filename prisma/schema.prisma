@@ -8,85 +8,85 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  phone     String
-  location  String
-  role      String   @default("USER")
-  listings  Listing[]
-  services  ServiceRequest[] @relation("ClientRequests")
-  assignments ServiceRequest[] @relation("TechnicianAssignments")
-  payments  Payment[]
+  id            String           @id @default(cuid())
+  name          String
+  email         String           @unique
+  password      String
+  phone         String
+  location      String
+  role          String           @default("USER")
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  listings      Listing[]
   notifications Notification[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  payments      Payment[]
+  assignments   ServiceRequest[] @relation("TechnicianAssignments")
+  services      ServiceRequest[] @relation("ClientRequests")
 }
 
 model Listing {
-  id          String     @id @default(cuid())
-  type        String
-  userId      String
-  user        User       @relation(fields: [userId], references: [id])
-  title       String
-  description String
-  price       Float?
-  make        String?
-  model       String?
-  year        Int?
-  mileage     Int?
-  condition   String?
-  transmission String?
-  fuelType    String?
-  location    String
-  images      String
-  availability String?
-  features    String
+  id             String   @id @default(cuid())
+  type           String
+  userId         String
+  title          String
+  description    String
+  price          Float?
+  make           String?
+  model          String?
+  year           Int?
+  mileage        Int?
+  condition      String?
+  transmission   String?
+  fuelType       String?
+  location       String
+  images         String
+  availability   String?
+  features       String
+  approved       Boolean  @default(false)
+  featured       Boolean  @default(false)
+  package        String   @default("FREE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
   pickupDelivery String?
-  approved    Boolean    @default(false)
-  featured    Boolean    @default(false)
-  package     String    @default("FREE")
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  user           User     @relation(fields: [userId], references: [id])
 }
 
 model ServiceRequest {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation("ClientRequests", fields: [userId], references: [id])
-  name        String?
-  phoneNumber String?
-  serviceType String
-  carDetails  String
-  location    String
-  locationType String   @default("Home")
+  id            String   @id @default(cuid())
+  userId        String
+  name          String?
+  phoneNumber   String?
+  serviceType   String
+  carDetails    String
+  location      String
+  locationType  String   @default("Home")
   preferredTime String?
-  status      String   @default("PENDING")
-  assignedToId String?
-  assignedTo   User?    @relation("TechnicianAssignments", fields: [assignedToId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  status        String   @default("PENDING")
+  assignedToId  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  assignedTo    User?    @relation("TechnicianAssignments", fields: [assignedToId], references: [id])
+  user          User     @relation("ClientRequests", fields: [userId], references: [id])
 }
 
 model Payment {
   id            String   @id @default(cuid())
   userId        String
-  user          User     @relation(fields: [userId], references: [id])
   amount        Float
   currency      String   @default("KES")
   method        String
   transactionId String?
-  status        String @default("PENDING")
+  status        String   @default("PENDING")
   createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
 }
 
 model Notification {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
   title     String
   message   String
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }

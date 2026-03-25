@@ -223,7 +223,7 @@ function InventoryContent() {
                   const mainImage = imageUrls[0] || 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80';
 
                   return (
-                    <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-2xl transition-all duration-500 relative">
+                    <Link key={car.id} href={`/inventory/${car.id}`} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 group hover:shadow-2xl transition-all duration-500 relative">
                       <div className="relative h-60 overflow-hidden">
                         <Image src={mainImage} alt={car.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                         {car.featured && (
@@ -300,7 +300,7 @@ function InventoryContent() {
                           <span className="text-[10px] font-black text-blue-500">{car.location}</span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
