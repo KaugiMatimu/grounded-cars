@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -348,9 +349,11 @@ export default function CreateListingForm() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {selectedFiles.map((file, index) => (
                   <div key={index} className="relative group aspect-square">
-                    <img
+                    <Image
                       src={URL.createObjectURL(file)}
                       alt="preview"
+                      fill
+                      unoptimized
                       className="w-full h-full object-cover rounded-lg border border-gray-200"
                     />
                     <button

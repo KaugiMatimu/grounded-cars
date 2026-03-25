@@ -16,12 +16,12 @@ export default function PaintWorkPage() {
           <div className="text-7xl mb-6">🎨</div>
           <h1 className="text-4xl font-black text-gray-900 mb-4 uppercase">Professional Paint Work</h1>
           <p className="text-xl text-gray-500 font-medium mb-8">
-            Restore your car's showroom shine with our professional bodywork and painting services. High-quality finishes guaranteed.
+            Restore your car&apos;s showroom shine with our professional bodywork and painting services. High-quality finishes guaranteed.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="space-y-4">
-              <h3 className="text-xl font-black uppercase tracking-tight">What's Included</h3>
+              <h3 className="text-xl font-black uppercase tracking-tight">What&apos;s Included</h3>
               <ul className="space-y-3">
                 {[
                   'Professional Scratch Repair',
