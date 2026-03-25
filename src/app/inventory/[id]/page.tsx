@@ -35,11 +35,11 @@ export default async function CarDetailPage({ params }: { params: { id: string }
     imageUrls = car.images ? [car.images] : []
   }
 
-  let features = []
+  let features: string[] = []
   try {
     features = JSON.parse(car.features)
   } catch (e) {
-    features = car.features ? car.features.split(',').map(f => f.trim()) : []
+    features = car.features ? car.features.split(',').map((f: string) => f.trim()) : []
   }
 
   const mainImage = imageUrls[0] || 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80'
@@ -157,14 +157,14 @@ export default async function CarDetailPage({ params }: { params: { id: string }
               { id: 'overview', title: 'Car overview', content: car.description },
               { id: 'location', title: 'Car location' },
               { id: 'loan', title: 'Loan calculator' }
-            ].map((section) => (
+            ].map((section: any) => (
               <div key={section.id} className="mb-12 pt-12 border-t border-gray-100">
                 <div className="flex flex-col md:flex-row items-start gap-12">
                   <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight w-full md:w-48 shrink-0">{section.title}</h2>
                   <div className="flex-1 w-full">
                     {section.id === 'features' && section.items && (
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4">
-                        {section.items.map((feature: string, i: number) => (
+                        {(section.items as string[]).map((feature: string, i: number) => (
                           <div key={i} className="flex items-center gap-3">
                             <Check className="w-4 h-4 text-blue-500" />
                             <span className="text-sm font-bold text-gray-600">{feature}</span>
