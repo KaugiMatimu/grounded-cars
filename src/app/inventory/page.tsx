@@ -111,7 +111,7 @@ function InventoryContent() {
                 { label: 'Transmission', key: 'transmission', options: transmissions },
                 { label: 'Fuel type', key: 'fuelType', options: fuelTypes },
                 { label: 'Model', key: 'model', options: carModels },
-              ].map((filter) => (
+              ].map((filter: any) => (
                 <div key={filter.label} className="relative group">
                   <select 
                     value={(filters as any)[filter.key]}
@@ -119,7 +119,7 @@ function InventoryContent() {
                     className="w-full appearance-none border border-gray-200 p-3 rounded text-gray-700 text-[14px] font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer bg-white group-hover:border-gray-300 transition-colors"
                   >
                     <option value="">{filter.label}</option>
-                    {filter.options.map(opt => <option key={opt} value={opt.toLowerCase()}>{opt}</option>)}
+                    {filter.options.map((opt: string) => <option key={opt} value={opt.toLowerCase()}>{opt}</option>)}
                   </select>
                   <ChevronLeft className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 -rotate-90 text-gray-400 pointer-events-none" />
                 </div>
@@ -213,7 +213,7 @@ function InventoryContent() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {listings.map((car) => {
+                {listings.map((car: any) => {
                   let imageUrls = [];
                   try {
                     imageUrls = JSON.parse(car.images);
