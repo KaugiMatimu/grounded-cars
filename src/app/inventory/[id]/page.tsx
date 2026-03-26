@@ -157,14 +157,14 @@ export default async function CarDetailPage({ params }: { params: { id: string }
               { id: 'overview', title: 'Car overview', content: car.description },
               { id: 'location', title: 'Car location' },
               { id: 'loan', title: 'Loan calculator' }
-            ].map((section: any) => (
+            ].map((section: { id: string; title: string; items?: string[]; content?: string }) => (
               <div key={section.id} className="mb-12 pt-12 border-t border-gray-100">
                 <div className="flex flex-col md:flex-row items-start gap-12">
                   <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight w-full md:w-48 shrink-0">{section.title}</h2>
                   <div className="flex-1 w-full">
                     {section.id === 'features' && section.items && (
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4">
-                        {(section.items as string[]).map((feature: string, i: number) => (
+                        {section.items.map((feature: string, i: number) => (
                           <div key={i} className="flex items-center gap-3">
                             <Check className="w-4 h-4 text-blue-500" />
                             <span className="text-sm font-bold text-gray-600">{feature}</span>
@@ -278,7 +278,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
               { title: 'Had a recent service or MOT, if required', desc: '' },
               { title: 'All Vehicle Photos of imperfections, if needed', desc: '' },
               { title: 'Been reconditioned to our high standards', desc: '' },
-            ].map((item: any, i: number) => (
+            ].map((item: { title: string; desc: string }, i: number) => (
               <div key={i} className="flex flex-col items-start text-left">
                 <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-6">
                   <CheckCircle2 className="w-6 h-6 text-blue-500" />

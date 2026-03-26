@@ -111,7 +111,7 @@ function InventoryContent() {
                 { label: 'Transmission', key: 'transmission', options: transmissions },
                 { label: 'Fuel type', key: 'fuelType', options: fuelTypes },
                 { label: 'Model', key: 'model', options: carModels },
-              ].map((filter: any) => (
+              ].map((filter: { label: string; key: string; options: string[] }) => (
                 <div key={filter.label} className="relative group">
                   <select 
                     value={(filters as any)[filter.key]}

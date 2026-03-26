@@ -258,7 +258,7 @@ export default function CreateListingForm() {
         <div className="space-y-4">
           <label className="text-xs font-black uppercase tracking-widest text-gray-400">Vehicle Features</label>
           <div className="flex flex-wrap gap-2">
-            {CAR_FEATURES.map((feature) => (
+            {CAR_FEATURES.map((feature: string) => (
               <button
                 key={feature}
                 type="button"
